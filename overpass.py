@@ -25,7 +25,7 @@ def readingFromGeojson():
         try:
             nome = feature['properties']['name']
             coordinates = feature['geometry']['coordinates']
-            if nome.startswith("Rua") or nome.startswith("Avenida"):
+            if nome.startswith("Rua") or nome.startswith("Avenida") or nome.startswith("Servidão"):
                 if nome not in vnome:
                     vnome.append(nome)
                     for feature1 in data['features']:
@@ -222,9 +222,9 @@ def geograficCell():
     with open(tabelaCSV, 'w', newline='\n', encoding='utf-8') as csvFile: #escrevendo na tabela
         writer = csv.writer(csvFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csvData = ['left', 'top', "right", "bottom", "id"]
-        # Serão necessários 2 conjuntos de coordenadas. (left, top) e (right, bottom), alem do id.
-        #(left, top) são as coordenadas superiores da esquerda de um retangulo.
-        # (right, bottom) são as coordenadas inferiores da direita de um retangulo
+        # Ser?o necess?rios 2 conjuntos de coordenadas. (left, top) e (right, bottom), alem do id.
+        #(left, top) s?o as coordenadas superiores da esquerda de um retangulo.
+        # (right, bottom) s?o as coordenadas inferiores da direita de um retangulo
         writer.writerow(csvData)
         for i in range(quantLon):
             for j in range(quantLat):
@@ -289,23 +289,23 @@ def bitMap(tabela, auxList):
     gerador(auxList)
 
 def gerador(auxList):
-    print("É necessario escolher entre ALERTAS ou CONGESTIONAMENTOS(JAMS) ou AMBOS")
+    print("? necessario escolher entre ALERTAS ou CONGESTIONAMENTOS(JAMS) ou AMBOS")
     op = int(input("Digite:\n1->ALERTA\n2->JAM\n3->SAIR\n"))
     while op > 3 and op < 1:
         op = int(input("Digite:\n1->ALERTA\n2->JAM\n3->SAIR\n"))
     while op == 1 or op == 2:
         """
             O usuario deve escolher uma dessas opcoes de parametro para o benchmark (gerador)
-            Parâmetros do programa:
-                -Intervalo de tempo para geração
-                -Quantidades de registros de ocorrências por CGs
-                -Quantidade de registros de ocorrências por CGs específicos (neste caso passar quais CGs por parâmetro tb).
+            Par?metros do programa:
+                -Intervalo de tempo para gera??o
+                -Quantidades de registros de ocorr?ncias por CGs
+                -Quantidade de registros de ocorr?ncias por CGs espec?ficos (neste caso passar quais CGs por par?metro tb).
             """
-        print("É NECESSARIO ESCOLHER UMA DAS OPCOES DE PARAMETRO PARA A CRIACAO DOS DADOS")
+        print("? NECESSARIO ESCOLHER UMA DAS OPCOES DE PARAMETRO PARA A CRIACAO DOS DADOS")
         ok1 = 0
         while (ok1 != 1):
             op1 = int(input(
-                "Digite:\n1->Intervalo de tempo\n2->Quantidades de registros de ocorrências por CGs\n3->Quantidade de registros de ocorrências por CGs específicos\n"))
+                "Digite:\n1->Intervalo de tempo\n2->Quantidades de registros de ocorr?ncias por CGs\n3->Quantidade de registros de ocorr?ncias por CGs espec?ficos\n"))
             ok1 = 1
 
             # Intervalo de tempo
@@ -315,15 +315,15 @@ def gerador(auxList):
                     op3 = int(input("Digite a quantidades de registros : "))
                     todosGCsTempoAlerta(op3)
                 else:
-                    op3 = int(input("Digite a quantidades de registros de ocorrências por CG's : "))
+                    op3 = int(input("Digite a quantidades de registros de ocorr?ncias por CG's : "))
                     auxList.append(op3)
                     listaInput = input("Digite as GC`s em ordem crescente separados por espaco: ")
                     listaGC = listaInput.split()
                     conjuntoEspecificoGCsTempoAlerta(listaGC, auxList)
 
-            # Quantidades de registros de ocorrências por CGs
+            # Quantidades de registros de ocorr?ncias por CGs
             elif op1 == 2:
-                op2 = int(input("Digite a quantidades de registros de ocorrências por CG's : "))
+                op2 = int(input("Digite a quantidades de registros de ocorr?ncias por CG's : "))
                 auxList.append(op2)
                 if op == 1:
                     alertaRegistrosPorCG(auxList)
@@ -333,9 +333,9 @@ def gerador(auxList):
 
 
 
-            # Quantidade de registros de ocorrências por CGs específicos
+            # Quantidade de registros de ocorr?ncias por CGs espec?ficos
             elif op1 == 3:
-                op2 = int(input("Digite a quantidades de registros de ocorrências por CG's : "))
+                op2 = int(input("Digite a quantidades de registros de ocorr?ncias por CG's : "))
                 auxList.append(op2)
                 listaInput = input("Digite as GC`s em ordem crescente separados por espaco: ")
                 listaGC = listaInput.split()
@@ -753,15 +753,6 @@ def jamRegistrosPorCG(auxList):
             id += 1
 
 def jamRegistrosPorGcEspecifico(auxList, listaGC):
-    """
-    latTopLeft = -48.933195
-    lonTopLeft = -26.139358
-    tamLat = 0.068519
-    tamLon = -0.098078
-    quantLat = 3
-    quantLon = 3
-    quantidade = 5
-    """
 
     arquivo = "ruas&CoordenadasOrdenadas.txt"
     id = 1
@@ -1037,5 +1028,4 @@ def main():
     #jamTodosGcTempo(10)
 
 main()
-
 

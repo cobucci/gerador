@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d052b17f-8c71-4ec5-8b0f-348d768e7673" name="Default Changelist" comment="" />
+    <list default="true" id="d052b17f-8c71-4ec5-8b0f-348d768e7673" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ruas&amp;Coordenadas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Ruas&amp;Coordenadas.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/overpass.py" beforeDir="false" afterPath="$PROJECT_DIR$/overpass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres.py" beforeDir="false" afterPath="$PROJECT_DIR$/postgres.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ruas&amp;CoordenadasOrdenadas.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ruas&amp;CoordenadasOrdenadas.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,7 +20,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1ZShNsewrd7opHRF18lDApWaJNN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -25,7 +35,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
-  <component name="RunManager" selected="Python.overpass">
+  <component name="RunManager" selected="Python.postgres">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="ic2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -47,7 +57,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="overpass" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="overpass" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="ic2" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -95,7 +105,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.overpass" />
         <item itemvalue="Python.postgres" />
       </list>
     </recent_temporary>
@@ -114,33 +123,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="451" y="210" width="1084" height="712" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584840003795">
+    <state x="451" y="210" width="1084" height="712" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585780634259">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="451" y="210" width="1084" height="712" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1584840003795" />
-    <state x="776" y="324" width="424" height="484" key="FileChooserDialogImpl" timestamp="1584840002443">
+    <state x="451" y="210" width="1084" height="712" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1585780634259" />
+    <state x="776" y="324" width="424" height="484" key="FileChooserDialogImpl" timestamp="1585775439132">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="776" y="324" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1584840002443" />
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1584840177734">
+    <state x="776" y="324" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1585775439132" />
+    <state width="1830" height="511" key="GridCell.Tab.0.bottom" timestamp="1585789044609">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1584840177734" />
-    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1584840177734">
+    <state width="1830" height="511" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1585789044609" />
+    <state width="1830" height="511" key="GridCell.Tab.0.center" timestamp="1585789044609">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1584840177734" />
-    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1584840177734">
+    <state width="1830" height="511" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1585789044609" />
+    <state width="1830" height="511" key="GridCell.Tab.0.left" timestamp="1585789044609">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1584840177734" />
-    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1584840177734">
+    <state width="1830" height="511" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1585789044609" />
+    <state width="1830" height="511" key="GridCell.Tab.0.right" timestamp="1585789044609">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1584840177734" />
+    <state width="1830" height="511" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1585789044609" />
     <state x="482" y="187" key="SettingsEditor" timestamp="1584838990564">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1584838990564" />
+    <state x="685" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1585763715451">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="685" y="357" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1585763715451" />
   </component>
 </project>
