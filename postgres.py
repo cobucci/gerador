@@ -598,6 +598,7 @@ def alertaRegistrosPorGcEspecifico(auxList, listaGC, path):
     quantLon = auxList[5]
     quantidade = auxList[6]
 
+    #transformando a lista dos indices dos CG's para uma lista de inteiros inteiro
     listaAux = []
     for x in range(len(listaGC)):
         aux = int(listaGC[x])
@@ -606,7 +607,10 @@ def alertaRegistrosPorGcEspecifico(auxList, listaGC, path):
     #vai indo de CG em CG
     for i in range(quantLon):
         for j in range(quantLat):
+
+            #se o identificador é igual a algum valor da lista de CG's. Identificador++ a cada final de loop
             if identificador in listaAux:
+                #calculo para determinar as latitudes e longitudes da limitantes da CG
                 left = latTopLeft + (j * tamLat)
                 top = lonTopLeft + (i * tamLon)
                 right = left + tamLat
@@ -752,7 +756,7 @@ def readingCSV(readingCsvParameters, path):
         return celulas
 
 #armazena o nome da rua e as coordenadas do jam (para a funcao gerarJamCG)
-def jamRegistrosPorGcEspecifico(auxList, listaGC, path):
+    def jamRegistrosPorGcEspecifico(auxList, listaGC, path):
     d = input(
         "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
     d2 = input(
@@ -1200,7 +1204,6 @@ def quantidadeRuas(path):
 def main():
 
     escolha = int(input("1->NOVOS dados\n2->REUTILIZAR dados\n3->Fechar programa\n"))
-
     #novo ou reutilizar geojson
     while escolha == 1 or escolha == 2:
         path = ""
@@ -1224,6 +1227,7 @@ def main():
             path = os.path.join(diretorioPasta, nomePasta)
 
         iniciarPrograma = 0
+
         while iniciarPrograma > 2 or iniciarPrograma < 1:
             iniciarPrograma = int(input("1->Dividir por celula geografica\n2->NAO Dividir por celular geografica\n"))
 
@@ -1238,6 +1242,7 @@ def main():
                 op = int(input("1->Alerta\n2->Jam\n3->SAIR\n"))
 
             while op == 1 or op == 2:
+
                 d = input(
                     "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
                 d2 = input(
@@ -1255,44 +1260,6 @@ def main():
                 while op > 3 or op < 1:
                     op = int(input("1->Alerta\n2->Jam\n3->SAIR\n"))
 
-        escolha = int(
-            input("\n\n\n1->Utilizar novo geojson\n2->Reutilizar geojson\n3->Fechar programa\n"))
-
-    """
-    iniciarPrograma = int(
-        input("1->Utilizar todas as ruas\n2->Dividir por celular geografica\n3->Fechar programa\n"))
-    while iniciarPrograma == 1 or iniciarPrograma == 2:
-
-        if iniciarPrograma == 1:
-            op = 0
-            while op > 3 or op < 1:
-                op = int(input("1->Alerta\n2->Jam\n3->SAIR\n"))
-
-            while op == 1 or op == 2:
-                d = input(
-                    "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
-                d2 = input(
-                    "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 59 48 140):  ")
-
-                if op == 1:
-                    op2 = int(input("Digite a quantidade de Alertas : "))
-                    gerarAlerta(op2, d, d2)
-
-                if op == 2:
-                    op2 = int(input("Digite a quantidade de Jams : "))
-                    gerarJam(op2, d, d2)
-
-                op = int(input("1->Alerta\n2->Jam\n3-SAIR\n"))
-                while op > 3 or op < 1:
-                    op = int(input("1->Alerta\n2->Jam\n3->SAIR\n"))
-
-        elif iniciarPrograma == 2:
-            geograficCell()
-
-        iniciarPrograma = int(input("1->Utilizar todas as ruas\n2->Dividir por celular geografica\n3->Fechar programa\n"))
-
-
-    """
-
+        escolha = int(input("\n\n\n1->Utilizar novo geojson\n2->Reutilizar geojson\n3->Fechar programa\n"))
 
 main()
