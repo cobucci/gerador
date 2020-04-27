@@ -1,0 +1,41 @@
+aNeste arquivo estarei explicando o funcionamento do programa “postgres.py”
+
+Obs1 : veja a lista de imports que estão sendo feitos. É necessário que todos estejam instalados no seu computador
+
+Obs2 : Verifique onde está a pasta com os arquivos, pois o caminho é diferente no seu computador, por isso é necessário mudar em algumas linhas do código. Procure por “diretorio = '/home/lucas/PycharmProjects/ic2/geojson' ” e coloque o diretório correto
+
+Obs3 : É necessário ter instalado o postgres e o postgis.
+
+Obs4 : os arquivos geojson devem estar na pasta geojson.
+
+Obs5: todas as pastas criadas devem ter nomes diferentes.
+
+main()
+O usuário vai escolher 1 para novos dados ou 2 para reutilizar dados. Novos dados significa que vai ser criada uma nova pasta para colocar novos arquivos dentro desta pasta. Vale ressaltar que para cada pasta, o os parâmetros de busca no arquivo geojson como Rua, Avenida, Servidão, Br, etc… será sempre o mesmo. Caso deseja mudar, mesmo para um geojson já utilizado, por favor criar uma nova pasta (novos dados). A pasta deve ter nome diferente das demais. 
+A função path() cria uma nova pasta.
+Na função lerGeojson() o usuário vai definir se quer utilizar todas as informações do geojson ou quer restringir. No caso do geojson de Joinville por exemplo, a BR, a cidade de Garuva aparecem. Além disso, em vários desses casos, a coordenada latitude está trocada com a longitude, causando problemas na hora de computar os limites de cada célula geográfica. Por isso é aconselhável restringir às informações, escolhendo apenas Rua, Avenida, etc.. . Não é necessário a utilização de vírgula para digitar no console. A função  lerGeojson() vai basicamente criar um arquivo chamado Ruas&Coordenadas.txt onde terá o nome das ruas e suas coordenadas.
+A função getLatLongMaxMin(path), vai pegar a latitude e longitude superior da esquerda da célula geográfica e a latitude e longitude inferior da direita da célula geográfica. Com esses valores é possível definir se alguma coordenada está presente ou não na CG.
+A função nomeRuas() cria um arquivo contendo apenas o nome das ruas
+A função ordenarCoord() está criando um arquivo chamado Ruas&CoordenadasOrdenadas.txt, onde as coordenadas das ruas estão ordenadas (é feito isso caso o usuário deseje criar jams). 
+	Neste ponto o usuário irá escolher se deseja dividir às ruas em células geográficas ou não.
+
+Se dividir por células geograficas:
+geograficCell() - vai criar um csv onde estará delimitando as CG’s com a latitude e longitude superior da esquerda da célula geográfica e a latitude e longitude inferior da direita da célula geográfica. latTopLeft é a latitude superior da esqueda.  lonTopLeft é a longitude superior da esqueda. latBottomRight é a latitude inferior da direita.  lonBottomRight é a longitude inferior da direita.
+bitMap() - vai criar um bitMap onde para cada rua, terá uma quantidade x de bits, onde o total representa a quantidade de células geográficas. O bit será 0 se a rua não estiver presente na CG referente a posição desse bit. O bit será 1 se a rua estiver presente na CG. Ex: considerando que dividimos a CG em 9 células geográficas e a rua Teste está presente nas células geográficas 4 e 5. Então o bit map da Rua teste será : 0 0 0 1 1 0 0 0 0.
+gerador() - o usuário escolha a quantidade de alertas ou jams e os GC’s que deseja (é só digitar os números separados por espaço, não é necessário vírgula).
+Se o usuário escolher alertas:
+	Primeiramente é feita a conexão com o BD. No seu computador provavelmente que as informações como database, user e password serão diferentes, portanto editar o código com os seus dados. Posteriormente é necessário colocar a data e hora inicial (pode copiar e colar o exemplo que está escrito no console). Posteriormente é analisado se a coordenada da rua está presente no CG, se sim, são armazenados essas informações em listas. Se para cada CG, a lista está vazia, então é printado vazio. Caso contrário é feito um loop onde o valor desse loop é a quantidade de alertas que o usuário escolheu. É feita a escolha randômica da rua e da latitude e longitude da mesma presente no GC. Além disso é gerada de forma randômica os outros valores presentes na tabela alerts. O valor da coluna geom não é feita de forma aleatória, é utilizada uma função do postgis, onde um ponto é transformado em uma geom.
+Se o usuário escolher jams:
+A ideia é basicamente igual ao dos alertas, só muda em relação a quantidade de coordenadas. Um jam pode ser 1 ou mais pontos. Para cada alerta, é feita uma escolha randômica da rua que terá o jam. Para cada rua escolhida, é analisada quantas coordenadas pertencem ao CG e é feito uma escolha randômica entre 1 e a quantidade total de coordenadas, para que este número seja a quantidade de pontos que terão o jam em si.  Além disso a primeira coordenada do jam é escolhida de forma aleatória e a partir dela, as coordenadas seguintes (existe um arquivo chamado Ruas&CoordenadasOrdenadas onde as coordenadas estão ordenadas) serão utilizadas, respeitando a quantidade máxima de coordenadas da rua . Os outros campos da tabela são gerados de forma aleatória, menos o campo geom, onde é utilizada uma função do postgis, que transforma uma linestring em uma geom.
+
+Se não dividir por celular geográficas.
+	O usuário pode escolher entre alerta ou jams. A logica por tras seguirá a mesma dos alertas e dos jams com células geográficas, a única diferença é que todas as ruas estarão disponíveis.
+Caso seja escolhida alerta.
+Vai ser feita uma escolha aleatória de qual rua e qual coordenada dessa rua será utilizada. Os valores dos campos da tabela alerts serão feitas de forma aleatória, menos o campo geom.
+	Caso seja escolhido jams.
+Vai ser escolhido uma rua aleatória, posteriormente é contabilizado a quantidade de coordenadas que esta rua possui. Com essa quantidade é feita uma escolha aleatória da quantidade de coordenadas que serão utilizadas (segue a mesma logica dos jams das células geograficas). Os valores dos campos da tabela jams serão feitas de forma aleatória, menos o campo geom.
+
+
+	
+
+

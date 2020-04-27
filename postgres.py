@@ -756,7 +756,7 @@ def readingCSV(readingCsvParameters, path):
         return celulas
 
 #armazena o nome da rua e as coordenadas do jam (para a funcao gerarJamCG)
-    def jamRegistrosPorGcEspecifico(auxList, listaGC, path):
+def jamRegistrosPorGcEspecifico(auxList, listaGC, path):
     d = input(
         "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
     d2 = input(
@@ -1204,6 +1204,7 @@ def quantidadeRuas(path):
 def main():
 
     escolha = int(input("1->NOVOS dados\n2->REUTILIZAR dados\n3->Fechar programa\n"))
+
     #novo ou reutilizar geojson
     while escolha == 1 or escolha == 2:
         path = ""
@@ -1227,7 +1228,6 @@ def main():
             path = os.path.join(diretorioPasta, nomePasta)
 
         iniciarPrograma = 0
-
         while iniciarPrograma > 2 or iniciarPrograma < 1:
             iniciarPrograma = int(input("1->Dividir por celula geografica\n2->NAO Dividir por celular geografica\n"))
 
@@ -1242,7 +1242,6 @@ def main():
                 op = int(input("1->Alerta\n2->Jam\n3->SAIR\n"))
 
             while op == 1 or op == 2:
-
                 d = input(
                     "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
                 d2 = input(
@@ -1261,5 +1260,7 @@ def main():
                     op = int(input("1->Alerta\n2->Jam\n3->SAIR\n"))
 
         escolha = int(input("\n\n\n1->Utilizar novo geojson\n2->Reutilizar geojson\n3->Fechar programa\n"))
+
+
 
 main()

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d052b17f-8c71-4ec5-8b0f-348d768e7673" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMe" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados.py" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres.py" beforeDir="false" afterPath="$PROJECT_DIR$/postgres.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +26,6 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -32,7 +33,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
-  <component name="RunManager" selected="Python.postgres">
+  <component name="RunManager" selected="Python.bancoDados">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="ic2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -46,6 +47,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="bancoDados" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ic2" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bancoDados.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -98,10 +120,12 @@
     </configuration>
     <list>
       <item itemvalue="Python.overpass" />
+      <item itemvalue="Python.bancoDados" />
       <item itemvalue="Python.postgres" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.bancoDados" />
         <item itemvalue="Python.postgres" />
       </list>
     </recent_temporary>
@@ -128,45 +152,49 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="324" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1585775439132" />
-    <state width="1830" height="67" key="GridCell.Tab.0.bottom" timestamp="1586299978879">
+    <state width="1830" height="222" key="GridCell.Tab.0.bottom" timestamp="1588017228034">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="67" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586299978879" />
-    <state width="1830" height="67" key="GridCell.Tab.0.center" timestamp="1586299978878">
+    <state width="1830" height="222" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
+    <state width="1830" height="222" key="GridCell.Tab.0.center" timestamp="1588017228034">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="67" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586299978878" />
-    <state width="1830" height="67" key="GridCell.Tab.0.left" timestamp="1586299978878">
+    <state width="1830" height="222" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
+    <state width="1830" height="222" key="GridCell.Tab.0.left" timestamp="1588017228034">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="67" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586299978878" />
-    <state width="1830" height="67" key="GridCell.Tab.0.right" timestamp="1586299978879">
+    <state width="1830" height="222" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
+    <state width="1830" height="222" key="GridCell.Tab.0.right" timestamp="1588017228034">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="67" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586299978879" />
-    <state width="1830" height="344" key="GridCell.Tab.1.bottom" timestamp="1586226248322">
+    <state width="1830" height="222" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
+    <state width="1830" height="344" key="GridCell.Tab.1.bottom" timestamp="1587977068395">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586226248322" />
-    <state width="1830" height="344" key="GridCell.Tab.1.center" timestamp="1586226248321">
+    <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068395" />
+    <state width="1830" height="344" key="GridCell.Tab.1.center" timestamp="1587977068394">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586226248321" />
-    <state width="1830" height="344" key="GridCell.Tab.1.left" timestamp="1586226248321">
+    <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068394" />
+    <state width="1830" height="344" key="GridCell.Tab.1.left" timestamp="1587977068394">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586226248321" />
-    <state width="1830" height="344" key="GridCell.Tab.1.right" timestamp="1586226248321">
+    <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068394" />
+    <state width="1830" height="344" key="GridCell.Tab.1.right" timestamp="1587977068394">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586226248321" />
+    <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068394" />
     <state x="482" y="187" key="SettingsEditor" timestamp="1584838990564">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1584838990564" />
-    <state x="685" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1586800720736">
+    <state x="685" y="357" key="com.intellij.ide.util.TipDialog" timestamp="1587955905813">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="685" y="357" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1586800720736" />
+    <state x="685" y="357" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1587955905813" />
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1587979188826">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="656" y="257" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1587979188826" />
   </component>
 </project>
