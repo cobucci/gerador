@@ -3,8 +3,167 @@
   <component name="ChangeListManager">
     <list default="true" id="d052b17f-8c71-4ec5-8b0f-348d768e7673" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ReadMe" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bancoDados.py" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Aluísio Pires Condeixa.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Alwino Hansen.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Antônio Ramos Alvim.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Edgar Nelson Meister.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Getúlio Vargas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Av. Getúlio Vargas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Hermann August Lepper.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Av. Hermann August Lepper.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. José Vieira.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Juscelino Kubitschek.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Av. Juscelino Kubitschek.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Marquês de Olinda.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Av. Marquês de Olinda.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Paulo Schroeder.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Av. Paulo Schroeder.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Santos Dumont.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Av. Santos Dumont.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Av. Victor Schopping.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/BR-101 S.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Eixo Industrial Hans Dieter Schmidt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Eixo Industrial Hans Dieter Schmidt.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Est. Fazenda.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/Est. da Ilha.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/Est. da Ilha.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. 15 de Novembro.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. 15 de Novembro.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. 9 de Março.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Abdon Batista.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Abdon Batista.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Adolfo da Veiga.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Agostinho José Cognaco.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Albano Schmidt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Albano Schmidt.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Alexandre Dohler.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Alexandre Schlemm.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Alexandre Schlemm.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Alfredo Wagner.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Alm. Barroso.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Alm. Jaceguay.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Alois Finder.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Alois Finder.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Américo Vespúcio.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Anita Garibaldi.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Anita Garibaldi.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Antônio Gonçalves.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Antônio Jorge Cecyn.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Apucarana.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Aracajú.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Aracajú.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Araranguá.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Aubé.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Aubé.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Augusto Bruno Nielson.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Baercker Wagner.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Benjamin Constant.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Bento Gonçalves.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Blumenau.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Blumenau.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Boehmerwald.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Boehmerwald.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Botafogo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Brasil.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Castro Alves.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Cel. Francisco Gomes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Cel. Procópio Gomes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Cel. Santiago.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Codornas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Codornas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Colombo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Colon.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Concórdia.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Conselheiro Mafra.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Copacabana.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. D. Bosco.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. D. Bosco.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Da. Francisca.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Dep. Jota Gonçalves.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Des. Nelson Nunes Guimarães.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Dorothovio do Nascimento.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Dorotóvio do Nascimento.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Dr. João Colin.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Dr. João Colin.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Dr. Plácido Olímpio de Oliveira.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Emílio Landmann.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Euzébio de Queirós.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Evaristo da Veiga.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Evaristo da Veiga.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Expedicionário Holz.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Fernando de Noronha.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Florianópolis.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Florianópolis.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Frederico Hubner.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Frontin.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Fátima.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Fátima.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Germano Wetzel.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Gothard Kaesemodel.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Graciosa.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Guanabara.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Guanabara.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Guarujá.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Guaíra.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Guaíra.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Guia Lopes.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Guilherme.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Gustavo Grossembacher.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Hermann Lange.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Iguaçu.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Iririú.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Itaiópolis.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Itaiópolis.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Jacob Eisenhuth.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Jaraguá.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. João Pessoa.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. João Pessoa.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. João da Costa Jr..csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Lages.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Lages.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Maj. Navarro Lins.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Maj. Navarro Lins.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Mal. Deodoro.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Mal. Deodoro.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Mal. Luz.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Manoel Silveira.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Manoel Silveira.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Marcos Welmuth.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Marcílio Dias.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Marq. de Olinda.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Max Colin.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Max Colin.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Menez de Oliveira.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Min. Calógeras.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Minas Gerais.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Mons. Gercino.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Mons. Gercino.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Nações Unidas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Noruega.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Nova Trento.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Orestes Guimarães.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Orestes Guimarães.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Otto Boehm.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Otto Nass.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Otto Nass.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Otto Pfuetzenreuter.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Ottokar Doerffel.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Ottokar Doerffel.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Paranavaí.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Parati.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Paulo Schneider.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Piauí.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Piauí.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pica-Pau.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Piratuba.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Piratuba.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Praia Grande.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pref. Baltazar Buschle.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pref. Helmuth Fallgatter.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pres. Afonso Penna.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pres. Campos Salles.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pres. Epitácio Pessoa.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pres. Nilo Peçanha.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Pres. Prudente de Moraes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Pres. Prudente de Moraes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Princesa Isabel.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Princesa Isabel.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Quintino Bocaiuva.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Realcy Silveira.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rio Branco.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rio Grande do Norte.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rio Grande do Sul.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rio do Ferro.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rio do Sul.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rogério Pereira.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Rogério Pereira.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rolf Colin.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Rui Barbosa.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Santo Amaro da Purificacão.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Sen. Felipe Schmidt.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Sen. Rodrigo Lobo.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Sen. Rodrigo Lobo.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. São Bras.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. São Carlos.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. São Paulo.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Teresópolis.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Timbó.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Toríbio Soares Pereira.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Tuiuti.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Tuiuti.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Tutóia.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Universidade.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Uruguaiana.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Valença.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Ver. Kurt Alvino Monich.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Visconde de Mauá.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Visconde de Mauá.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. Visconde de Taunay.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. Visconde de Taunay.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. das Cegonhas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. das Cegonhas.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. das Granadas.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. do Bera.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. do Porto.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. do Porto.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. do Príncipe.csv" beforeDir="false" afterPath="$PROJECT_DIR$/bancoDados/R. do Príncipe.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/R. dos Suíços.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/SC-108 Rod. Rodolfo Jahn.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/SC-418.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bancoDados/V. Exclusiva para ônibus.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres.py" beforeDir="false" afterPath="$PROJECT_DIR$/postgres.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,38 +311,38 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="324" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1585775439132" />
-    <state width="1830" height="222" key="GridCell.Tab.0.bottom" timestamp="1588017228034">
+    <state width="1830" height="237" key="GridCell.Tab.0.bottom" timestamp="1588275270837">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="222" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
-    <state width="1830" height="222" key="GridCell.Tab.0.center" timestamp="1588017228034">
+    <state width="1830" height="237" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1588275270837" />
+    <state width="1830" height="237" key="GridCell.Tab.0.center" timestamp="1588275270837">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="222" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
-    <state width="1830" height="222" key="GridCell.Tab.0.left" timestamp="1588017228034">
+    <state width="1830" height="237" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1588275270837" />
+    <state width="1830" height="237" key="GridCell.Tab.0.left" timestamp="1588275270837">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="222" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
-    <state width="1830" height="222" key="GridCell.Tab.0.right" timestamp="1588017228034">
+    <state width="1830" height="237" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1588275270837" />
+    <state width="1830" height="237" key="GridCell.Tab.0.right" timestamp="1588275270837">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="222" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1588017228034" />
-    <state width="1830" height="344" key="GridCell.Tab.1.bottom" timestamp="1587977068395">
+    <state width="1830" height="237" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1588275270837" />
+    <state width="1830" height="344" key="GridCell.Tab.1.bottom" timestamp="1588194211111">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068395" />
-    <state width="1830" height="344" key="GridCell.Tab.1.center" timestamp="1587977068394">
+    <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1588194211111" />
+    <state width="1830" height="344" key="GridCell.Tab.1.center" timestamp="1588194211111">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068394" />
-    <state width="1830" height="344" key="GridCell.Tab.1.left" timestamp="1587977068394">
+    <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1588194211111" />
+    <state width="1830" height="344" key="GridCell.Tab.1.left" timestamp="1588194211111">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068394" />
-    <state width="1830" height="344" key="GridCell.Tab.1.right" timestamp="1587977068394">
+    <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1588194211111" />
+    <state width="1830" height="344" key="GridCell.Tab.1.right" timestamp="1588194211111">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1587977068394" />
+    <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1588194211111" />
     <state x="482" y="187" key="SettingsEditor" timestamp="1584838990564">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

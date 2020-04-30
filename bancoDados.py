@@ -13,6 +13,7 @@ import psycopg2
 import random
 import os.path
 import pandas as pd
+from postgres import *
 
 idDuplicados = []
 
@@ -21,7 +22,7 @@ def conexao():
     con = psycopg2.connect(host='127.0.0.1', database='ic',
                            user='lucas', password='')
     cur = con.cursor()
-    query = "select street, pub_utc_date, line , id from waze.jams limit 500;"
+    query = "select street, pub_utc_date, line , id from waze.jams limit 100;"
     cur.execute(query)
     retornoBD = cur.fetchall()
     dadosEmArquivos(retornoBD)
@@ -66,6 +67,7 @@ def dadosEmArquivos(retornoBD):
 def retirarDuplicados():
 
     diretorio = '/home/lucas/PycharmProjects/ic2/bancoDados'
+    daux = diretorio + "/"
     listaArquivos = []
     for root, dirs, files in os.walk(diretorio):
         listaArquivos = files
@@ -74,6 +76,8 @@ def retirarDuplicados():
     for i in range(len(listaArquivos)):
 
         nomeRua = listaArquivos[i]
+        d = nomeRua.split(".csv")
+        print(d[0])
         nomeCompletoArquivo = os.path.join(diretorio, nomeRua)
         data = []
         line = []
@@ -88,33 +92,114 @@ def retirarDuplicados():
                     id.append(row[2])
                 sinal = 1
 
-        #print(nomeRua)
-        #print(data)
-        indiceDosDuplicados, indicePermanecente = getIDdosDuplicados(data)
-        #print(indicePermanecente)
-        #print(indiceDosDuplicados)
-        """
-        
-        """
-        #if len(indiceDosDuplicados) > 0:
-            #print(len(indiceDosDuplicados))
-            #analisarCoordenada(indiceDosDuplicados, indicePermanecente, data, line, id)
+        #para cada arquivo, ver a hora + 1... 1 de cada linha
+        vIndice = []
+        #print(len(data))
+        for x in range(len(data)):
 
-        #1 segundo a mais
+            dataAtual = str(data[x])
+            vplat = []
+            vplon = []
+            vplat, vplon = pegarCoordenada(line[x])
+            vdlat = []
+            vdlon = []
+            daigual = ""
+            for j in range(19):  # pegar ate os min
+                daigual += dataAtual[j]
 
-        for j in range(len(data)):
-            d = data[j]
-            d = d.split()
+            for k in range(len(data)):
+                if x != k and k not in vIndice:
+                    dataAnalisada = str(data[k])
+                    #igual
+                    if data[k].startswith(daigual):
+                        #colocar em vlat, vlon
+                        vdlat, vdlon = pegarCoordenada(line[k])
+                        #print("%s - %s" % (data[k], daigual))
+
+                        #marcar os indices que vao sair
+                        if x not in vIndice:
+                            vIndice.append(x)
+                        vIndice.append(k)
+
+            #diferente + 1
+            if len(vdlat) > 0:
+                recursiva(data[x], data, vdlat, vdlon, line, vIndice)
+                #comparar vp com vd
+                vplat, vplon = analisarVetorCoordenadas(vplat, vplon, vdlat, vdlon)
+                #criar nova line com vp
+                linestring = criarLine(vplat, vplon)
+                #ver quais as linhas que vao ser eliminadas
+
+                #print(linestring)
+                for j in range(len(vIndice)):
+                    #excluirRegistro(id[vIndice[j]])
+                    print("ia excluir o %s" % id[vIndice[j]])
+                gerarJam2(dataAtual, linestring, d[0], vplat, vplon)
+                #criar um novo registro
+                #query de exclusao
 
 
-        dia = d[0]
-        hr = d[1]
-        #gerarData(dia, hr)
+
+
+
+def recursiva(dataAgora, data, vdlat, vdlon, line, vIndice):
+
+    lataux = []
+    lonaux = []
+    dataAgora = gerarHora(dataAgora)
+    dataAgora = str(dataAgora)
+    sinal = 0
+
+    #add 1 min e ve se alguem tem esse horario
+    for x in range(len(data)):
+
+        #verifica se o indice ja foi igual a alguem
+        if x not in vIndice:
+            #print(dataAgora)
+            #print(data[x])
+            #print("%s - %s" % (dataAgora, data[x]))
+            if dataAgora == data[x]:
+                sinal = 1
+                lataux, lonaux = pegarCoordenada(line[x])
+                #print("coloquei o %d" % x)
+                vIndice.append(x)
+
+    #se tiver alguem com o horario+1, vai entrar aqui
+    if sinal == 1:
+        for i in range(len(lataux)):
+            aux = 0
+            for j in range(len(vdlat)):
+                if vdlat[j] == lataux[i] and vdlon[j] == lonaux[i]:
+                    aux = 1
+            if aux == 0:
+                vdlat.append(lataux[i])
+                vdlon.append(lonaux[i])
+
+        recursiva(dataAgora, data, vdlat, vdlon, line, vIndice)
+
+def gerarHora(data):
+    #dt_string = "12/11/2018 09:15:32.100000"
+    #print(data)
+    timestamp = ""
+    try:
+        timestamp = datetime.strptime(data, "%Y-%m-%d %H:%M:%S.%f")
+        #print(timestamp)
+    except:
+        #print("-----------------")
+        timestamp = datetime.strptime(data, "%Y-%m-%d %H:%M:%S")
         #print(timestamp)
 
+    sec = timedelta(seconds=1)
+    new_timestamp = timestamp
+    new_timestamp += sec
+    return new_timestamp
+
+    #print(new_timestamp)
+    #print("-----")
 
 
-def gerarData(dia, hora):
+
+def gerarData(dia, hora, indice, data, line):
 
     d = []
     year = ""
@@ -177,11 +262,36 @@ def gerarData(dia, hora):
     #print(d)
 
     timestamp = datetime(year=d[0], month=d[1], day=d[2], hour=d[3], minute=d[4], second=d[5], microsecond=d[6])
+    vplat = []
+    vplon = []
+    vdlat = []
+    vdlon = []
+    sinal = 0
+    indicesParaExcluirBD = []
     for x in range(0, 100000):
         mili = timedelta(microseconds=x)
         new_timestamp = timestamp
         new_timestamp += mili
         #print(new_timestamp)
+        #ve se alguem tem esse valor de hora
+        for i in range(len(data)):
+            if i != indice:
+                hrstr = str(new_timestamp)
+                if data == hrstr:
+                    sinal = 1
+                    if i not in indicesParaExcluirBD:
+                        indicesParaExcluirBD.append(i)
+                    if indice not in indicesParaExcluirBD:
+                        indicesParaExcluirBD.append(indicesParaExcluirBD)
+                    vplat, vplon = pegarCoordenada(line[indice])
+                    vdlat, vdlon = pegarCoordenada(line[i])
+                    vplat, vplon = analisarVetorCoordenadas(vplat, vplon, vdlat, vdlon)
+
+    #ja tenho o vetor
+    #ja tenho o indice
+
+
+
 
 
 def getIDdosDuplicados(lista):
@@ -351,7 +461,120 @@ def gerarStringLocation(listaRetorno):
     # print(l1)
     return l1
 
+def analisarVetorCoordenadas(vplat, vplon, vdlat, vdlon):
 
+    for i in range(len(vdlat)):
+        sinal = 0
+        for j in range(len(vplat)):
+            if vdlat[i] == vplat[j] and vdlon[i] == vplon[j]:
+                sinal = 1
+
+        if sinal == 0:
+            vplat.append(vdlat[i])
+            vplon.append(vdlon[i])
+
+
+    return vplat, vplon
+
+
+def gerarJam2(dataHora, line, street, lat, lon):
+
+
+    con = psycopg2.connect(host='127.0.0.1', database='ic',
+                           user='lucas', password='')
+    cur = con.cursor()
+
+    id = gerarId()
+    uuid = gerarUuid()
+    pub_mills = str(gerarPubMillis())
+    dt = dataHora
+    data = str(dt)
+    startNode = ""
+    endNode = ""
+    rt = gerarRoadType()
+    city = "Joinville"
+    country = "BR"
+    delay = gerarDelay()
+    speed = gerarSpeed()
+    speedKMH = speed * 4.18
+    # print(speed, speedKMH)
+    length = gerarLength()
+    turnType = "NONE"
+    level = gerarLevel()
+    blocking = ""
+    type1 = "NONE"
+    turnLine = ""
+    datafile_ID = str(gerarDFI())
+
+    geomAux1 = ""
+    if len(lat) == 1:
+        geomAux1 = "SELECT ST_GeomFromText('POINT("
+        latText = str(lat[0])
+        lonText = str(lon[0])
+        geomAux1 += latText
+        geomAux1 += " "
+        geomAux1 += lonText
+        geomAux1 += ")', 4326)"
+        print(geomAux1)
+    else:
+        geomAux1 = "SELECT ST_GeomFromText('LINESTRING("
+        for x in range(len(lat)):
+            if x != 0:
+                geomAux1 += ","
+                latText = str(lat[x])
+                lonText = str(lon[x])
+                geomAux1 += latText
+                geomAux1 += " "
+                geomAux1 += lonText
+            else:
+                latText = str(lat[x])
+                lonText = str(lon[x])
+                geomAux1 += latText
+                geomAux1 += " "
+                geomAux1 += lonText
+
+        geomAux1 += ")', 4326)"
+
+    cur.execute(geomAux1)
+    mobile_records = cur.fetchone()
+    aux = ""
+    palavra = str(mobile_records)
+    for x in palavra:
+        if x != "(" and x != "'" and x != "," and x != ")":
+            aux += x
+
+    req = "INSERT INTO waze.jams values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    values = [id, uuid, pub_mills, data, startNode, endNode, rt, street, city, country, delay, speed, speedKMH,
+              length, turnType, level, blocking, line, type1, None, datafile_ID, aux]
+    cur = con.cursor()
+    cur.execute(req, values)
+    con.commit()
+
+    print("Id jam = " + id + " | tempo = " + data)
+
+
+    # closing database connection.
+    if con:
+        cur.close()
+        con.close()
+        print("PostgreSQL connection is closed\n\n")
+
+def excluirRegistro(id):
+
+
+    con = psycopg2.connect(host='127.0.0.1', database='ic',
+                           user='lucas', password='')
+    cur = con.cursor()
+    query = "Delete from waze.jams where id= '"
+    query += id
+    query += "'"
+    cur.execute(query)
+    retornoBD = cur.fetchall()
+    print(retornoBD)
+
+
+#retirarDuplicados()
+#gerarHora()
 conexao()
 #pegarCoordenada("[{'x': -48.850532, 'y': -26.334066}, {'x': -48.848051, 'y': -26.334057}, {'x': -48.847528, 'y': -26.334045}, {'x': -48.845524, 'y': -26.334038}]")
 
