@@ -15,18 +15,21 @@ import os.path
 import pandas as pd
 from postgres import *
 
-idDuplicados = []
 
 def conexao():
 
     con = psycopg2.connect(host='127.0.0.1', database='ic',
                            user='lucas', password='')
     cur = con.cursor()
-    query = "select street, pub_utc_date, line , id from waze.jams limit 100;"
+    quantTuplas = input("Digite a quantidade de rows afetadas : ")
+    query = "select street, pub_utc_date, line , id from waze.jams limit "
+    query += quantTuplas
+    print(query)
     cur.execute(query)
     retornoBD = cur.fetchall()
     dadosEmArquivos(retornoBD)
     retirarDuplicados()
+
 
 
 def dadosEmArquivos(retornoBD):
@@ -573,9 +576,10 @@ def excluirRegistro(id):
     print(retornoBD)
 
 
+
 #retirarDuplicados()
 #gerarHora()
 conexao()
-#pegarCoordenada("[{'x': -48.850532, 'y': -26.334066}, {'x': -48.848051, 'y': -26.334057}, {'x': -48.847528, 'y': -26.334045}, {'x': -48.845524, 'y': -26.334038}]")
+
 
 
