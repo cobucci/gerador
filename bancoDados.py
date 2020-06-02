@@ -14,26 +14,508 @@ import random
 import os.path
 import pandas as pd
 from postgres import *
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
 
 
 def conexao():
 
+
     con = psycopg2.connect(host='127.0.0.1', database='ic',
                            user='lucas', password='')
     cur = con.cursor()
+    query = "select street from waze.jams limit 10"
+    cur.execute(query)
+    retornoBD = cur.fetchall()
+    ruas = []
+    ruasC = []
+    for x in retornoBD:
+        x = str(x)
+        ruas.append(x)
+
+    for x in ruas:
+        if x != '':
+            sp0 = x.split("(")
+            sp1 = sp0[1]
+            sp1 = sp1.split(",)")
+            nr = str(sp1[0])
+            if nr not in ruasC:
+                ruasC.append(nr)
+
+    for x in ruasC:
+        print("comecei Jams - " + x)
+        query = "select pub_utc_date, geom from waze.jams where street = "
+        query += x
+        query += " limit 1000"
+        cur = con.cursor()
+        cur.execute(query)
+        retornoJams = cur.fetchall()
+
+        print("comecei Alerts - " + x)
+        query = "select pub_utc_date, geom from waze.alerts where street = "
+        query += x
+        query += " limit 1000"
+        cur = con.cursor()
+        cur.execute(query)
+        retornoAlerts = cur.fetchall()
+        print("comecei ST_Intersects - " + x)
+        for i in retornoJams:
+            for j in retornoAlerts:
+                query = "select ST_Intersects('"
+                query += str(i[1])
+                query += "','"
+                query += str(j[1])
+                query += "')"
+                #cur = con.cursor()
+                cur.execute(query)
+                result = cur.fetchone()
+                if result[0]:
+                    d1 = str(i[0])
+                    d2 = str(j[0])
+                    if d1[:7] == d2[:7]:
+                        print("%s = %s - %s" % (x, str(i[0]), str(j[0])))
+        print("Terminei - %s\n\n" % x)
+
+
+
+
+
+
+
+    #print(ruas)
+    #dadosEmArquivos(retornoBD)
+    # queryAJ(retornoBD)
+    # retirarDuplicados()
+
+    """
     quantTuplas = input("Digite a quantidade de rows afetadas : ")
-    query = "select street, pub_utc_date, line , id from waze.jams limit "
+    query = "select street, pub_utc_date, line , id, geom,  from waze.jams limit "
     query += quantTuplas
-    print(query)
+    #print(query)
     cur.execute(query)
     retornoBD = cur.fetchall()
     dadosEmArquivos(retornoBD)
-    retirarDuplicados()
+    #queryAJ(retornoBD)
+    #retirarDuplicados()
+
+    """
+
+    #----------------------------
+
+def procurarNoArquivo():
+
+    con = psycopg2.connect(host='127.0.0.1', database='ic',
+                           user='lucas', password='')
+    cur = con.cursor()
+
+    diretorio = '/home/lucas/PycharmProjects/ic2/bancoDados/'
+    daux = diretorio + "/"
+    listaArquivos = []
+    for root, dirs, files in os.walk(diretorio):
+        listaArquivos = files
+
+    for i in range(len(listaArquivos)):
+
+        nomeCompletoArquivo = os.path.join(diretorio, listaArquivos[i])
+        with open(nomeCompletoArquivo, newline='\n', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile)
+            nomeRuaAux = listaArquivos[i]
+            nomeR = nomeRuaAux.split(".csv")
+            query = "select pub_utc_date, location, geom from waze.alerts where street='"
+            query+= nomeR[0]
+            query += "' limit 1000"
+            cur.execute(query)
+            retornoBD = cur.fetchall()
+            for row in reader:
+                geomJ = row[3]
+               # geomA =
+
+
+def correlacao():
+
+    limiteRuas = "2"
+    limiteJamAlerta = "3000"
+    con = psycopg2.connect(host='127.0.0.1', database='ic',
+                           user='lucas', password='')
+    cur = con.cursor()
+    query = "select street from waze.jams limit "
+    query += limiteRuas
+    cur.execute(query)
+    retornoBD = cur.fetchall()
+    ruas = []
+    ruasC = []
+    for x in retornoBD:
+        x = str(x)
+        ruas.append(x)
+
+    for x in ruas:
+        if x != '':
+            sp0 = x.split("(")
+            sp1 = sp0[1]
+            sp1 = sp1.split(",)")
+            nr = str(sp1[0])
+            if nr not in ruasC:
+                ruasC.append(nr)
+
+    for x in ruasC:
+
+        print("comecei Alerts - " + x)
+        query = "select pub_utc_date, location, type from waze.alerts where street = "
+        query += x
+        query += " limit "
+        query += limiteJamAlerta
+        #cur = con.cursor()
+        cur.execute(query)
+        retornoAlerts = []
+        retornoAlertsSemDuplicados = []
+        retornoAlerts = cur.fetchall()
+        # retirar duplicados
+        retornoAlertsSemDuplicados = duplicadosAlertas(retornoAlerts, retornoAlertsSemDuplicados, limiteJamAlerta)
+        vezes = 0
+        for i in range(100):
+
+            if len(retornoAlertsSemDuplicados) <= int(limiteJamAlerta):
+                vezes += 1
+                offset = int(limiteJamAlerta) * vezes
+                query = "select pub_utc_date, location, type from waze.alerts where street = "
+                query += x
+                query += " offset "
+                query += str(offset)
+                query += " limit "
+                query += limiteJamAlerta
+                cur.execute(query)
+                retornoAlerts = cur.fetchall()
+                retornoAlertsSemDuplicados = duplicadosAlertas(retornoAlerts, retornoAlertsSemDuplicados, limiteJamAlerta)
+            else:
+                break
+
+        print(len(retornoAlertsSemDuplicados))
+        #print(vezes)
+
+
+        print("comecei Jams - " + x)
+        query = "select pub_utc_date, line, delay, length, level from waze.jams where street = "
+        query += x
+        query += " limit "
+        query += limiteJamAlerta
+        cur.execute(query)
+        retornoJams = cur.fetchall()
+        retornoJamSemDuplicados = []
+        vezes = 0
+        for i in range(100):
+            if len(retornoJamSemDuplicados) <= int(limiteJamAlerta):
+                vezes += 1
+                offset = int(limiteJamAlerta) * vezes
+                query = "select pub_utc_date, line, delay, length, level from waze.jams where street = "
+                query += x
+                query += " offset "
+                query += str(offset)
+                query += " limit "
+                query += limiteJamAlerta
+                cur.execute(query)
+                retornoJams = cur.fetchall()
+                retornoJamSemDuplicados = duplicadosJams(retornoJams, retornoJamSemDuplicados, limiteJamAlerta)
+                # print(query)
+            else:
+                break
+
+
+
+        print(len(retornoJamSemDuplicados))
+        #criarAquivos(retornoAlertsSemDuplicados, retornoJamSemDuplicados)
+        calculoHorario(retornoAlertsSemDuplicados, retornoJamSemDuplicados, x)
+
+def duplicadosJams(retornoJams, retornoJamSemDuplicados, limiteJamAlerta):
+
+    #se hr for igual, fazer um novo registro (todas as coords, maior len, maior delay) e excluir todos os iguais
+    for i in retornoJams:
+        vdlat = []
+        vdlon = []
+        vdlat, vdlon = pegarCoordenada(i[1])
+        duplicado = 0
+        for j in retornoJamSemDuplicados:
+            vplat = []
+            vplon = []
+            vplat, vplon = pegarCoordenada(j[1])
+            if i[0] == j[0]:
+                vplat, vplon = verificarSeEstaNaLista(vplat, vplon, vdlat, vdlon)
+                if int(i[2]) > int(j[2]): #maior delay
+                    j[2] = i[2]
+                if int(i[3]) > int(j[3]): #maior length
+                    j[3] = i[3]
+                if int(i[4]) > int(j[4]): #maior level
+                    j[4] = i[4]
+                line = criarLine(vplat, vplon)
+                j[1] = line
+                duplicado = 1
+
+        if duplicado == 0:
+            aux = []
+            aux.append(i[0])
+            aux.append(i[1])
+            aux.append(i[2])
+            aux.append(i[3])
+            aux.append(i[4])
+            retornoJamSemDuplicados.append(aux)
+
+    return retornoJamSemDuplicados
+
+
+
+
+
+
+
+
+def duplicadosAlertas(retornoAlerts, retornoAlertsSemDuplicados, limiteJamAlerta):
+
+    for i in retornoAlerts:
+        if i not in retornoAlertsSemDuplicados:
+            if len(retornoAlertsSemDuplicados) <= int(limiteJamAlerta):
+                retornoAlertsSemDuplicados.append(i)
+            else:
+                return retornoAlertsSemDuplicados
+
+    return retornoAlertsSemDuplicados
+
+
+
+def calculoHorario(alertas, jams, rua):
+
+    indiceJ = []
+    indiceA = []
+
+    with open('/home/lucas/PycharmProjects/ic2/correlacao.txt', "a") as writter:
+
+        for i in range(0, len(alertas)):
+            if i not in indiceA:
+                registro = ["", "", "", 0, 0, 0, 0, 0]
+                registro[0] = rua
+                registro[1] = alertas[i][0]
+                registro[2] = alertas[i][0]
+                registro[3] = 1
+                horaA = str(alertas[i][0])
+                ha = horaA[:14]
+                indiceA.append(i)
+                min1 = int(horaA[14])
+                #totalLevel = 0
+                #print("comecou")
+                for j in range(i+1, len(alertas)):
+                    if j not in indiceJ:
+                        #horaA = str(alertas[i][0])
+                        horaB = str(alertas[j][0])
+                        #ha = horaA[:14]
+                        hj = horaB[:14]
+                        if ha == hj:
+                            #min1 = int(horaA[14])
+                            min2 = int(horaB[14])
+                            if (min1 <= 2 and min2 <= 2) or (min1 > 2 and min2 > 2):
+                                #print("entrei alerta")
+                                #print("%s - %s || %s - %s" % (horaA, horaB, alertas[i][1], alertas[j][1]))
+                                if registro[1] > alertas[j][0]:
+                                    registro[1] = alertas[j][0]
+                                if registro[2] < alertas[j][0]:
+                                    registro[2] = alertas[j][0]
+                                registro[3] += 1
+                                indiceA.append(j)
+
+                #print("%s - %s -  %s - %d" % (registro[0], registro[1], registro[2], registro[3]))
+                #comecar os jams
+                for k in range(0, len(jams)):
+                    if k not in indiceJ:
+                        horaJ = str(jams[k][0])
+                        hj = horaJ[:14]
+                        #print("%s - %s" % (ha, hj))
+                        if ha == hj:
+                            min2 = int(horaJ[14])
+                            if (min1 <= 2 and min2 <= 2) or (min1 > 2 and min2 > 2):
+                                #print("entrei jam")
+                                #print("%s - %s" % (horaA, horaJ))
+                                indiceJ.append(k)
+                                if registro[1] > jams[k][0]:
+                                    registro[1] = jams[k][0]
+                                if registro[2] < jams[k][0]:
+                                    registro[2] = jams[k][0]
+                                registro[4] += 1
+                                #print("level = %d" % int(jams[k][4]))
+                                registro[5] += int(jams[k][4])
+                                if registro[6] < int(jams[k][2]):
+                                    registro[6] = int(jams[k][2])
+                                if registro[7] < int(jams[k][3]):
+                                    registro[7] = int(jams[k][3])
+                if registro[4] > 0:
+                    #print("%d / %d" % (registro[5], registro[4]))
+                    registro[5] = registro[5] / registro[4]
+
+                print("%s - %s -  %s - %d - %d - %d - %d - %d" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
+                writter.write("%s - %s -  %s - %d - %d - %d - %d - %d\n" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
+        print("--")
+        for i in range(0, len(jams)):
+            if i not in indiceJ:
+                indiceJ.append(i)
+                registro = ["", "", "", 0, 0, 0, 0, 0]
+                registro[0] = rua
+                registro[1] = jams[i][0]
+                registro[2] = jams[i][0]
+                registro[4] = 1
+                registro[5] = jams[i][4]
+                horaJ = str(jams[i][0])
+                h1 = horaJ[:14]
+                min1 = int(horaJ[14])
+                for j in range(i+1, len(jams)):
+                    if j not in indiceJ:
+                        horaB = str(jams[j][0])
+                        h2 = horaB[:14]
+                        if h1 == h2:
+                            min2 = int(horaB[14])
+                            if (min1 <= 2 and min2 <= 2) or (min1 > 2 and min2 > 2):
+                                indiceJ.append(j)
+                                if registro[1] > jams[j][0]:
+                                    registro[1] = jams[j][0]
+                                if registro[2] < jams[j][0]:
+                                    registro[2] = jams[j][0]
+                                registro[4] += 1
+                                #print("level = %d" % int(jams[k][4]))
+                                registro[5] += int(jams[j][4])
+                                if registro[6] < int(jams[j][2]):
+                                    registro[6] = int(jams[j][2])
+                                if registro[7] < int(jams[j][3]):
+                                    registro[7] = int(jams[j][3])
+                if registro[4] > 0:
+                    #print("%d / %d" % (registro[5], registro[4]))
+                    registro[5] = registro[5] / registro[4]
+
+                print("%s - %s -  %s - %d - %d - %d - %d - %d" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
+                writter.write("%s - %s -  %s - %d - %d - %d - %d - %d\n" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
+
+
+def criarAquivos(alertas, jams):
+
+    valertas = []
+    for a in alertas:
+        valertas.append([a[0]])
+
+    for i in range(len(valertas)):
+        for j in range(i+1, len(valertas)):
+            if valertas[i] > valertas[j]:
+                aux = valertas[i]
+                valertas[i] = valertas[j]
+                valertas[j] = aux
+
+    vjams = []
+    for j in jams:
+        vjams.append([j[0]])
+
+    for i in range(len(vjams)):
+        for j in range(i + 1, len(vjams)):
+            if vjams[i] > vjams[j]:
+                aux = vjams[i]
+                vjams[i] = vjams[j]
+                vjams[j] = aux
+
+    with open("alertas.txt", "a") as writter:
+        for a in valertas:
+            writter.write("%s\n" % str(a[0]))
+
+    with open("jams.txt", "a") as writter:
+        for a in vjams:
+            writter.write("%s\n" % str(a[0]))
+
+def queryAJ(retornoBD):
+
+    con = psycopg2.connect(host='127.0.0.1', database='ic',
+                           user='lucas', password='')
+    cur = con.cursor()
+
+    diretorio = '/home/lucas/PycharmProjects/ic2/bancoDados/'
+    daux = diretorio + "/"
+    listaArquivos = []
+    for root, dirs, files in os.walk(diretorio):
+        listaArquivos = files
+
+    for i in range(len(listaArquivos)):
+
+        nomeCompletoArquivo = os.path.join(diretorio, listaArquivos[i])
+        with open(nomeCompletoArquivo, newline='\n', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+
+                if row[0] != "date":
+                    data = row[0]
+                    coord = row[1]
+
+                    if data != "":
+
+                        try:
+                            timestamp = datetime.strptime(data, "%Y-%m-%d %H:%M:%S.%f")
+                        except:
+                            timestamp = datetime.strptime(data, "%Y-%m-%d %H:%M:%S")
+
+                        mesAmais = timestamp + relativedelta(months=+1)
+
+                        nomeRuaAux = listaArquivos[i]
+                        nomeR = nomeRuaAux.split(".csv")
+                        print(nomeR[0])
+                        nomeRua = nomeR[0]
+                        query = "select street, location, pub_utc_date, geom from waze.alerts where street = '"
+                        query += nomeRua
+                        query += "' or pub_utc_date >= '"
+                        query += str(timestamp)
+                        query += "' and pub_utc_date <= '"
+                        query += str(mesAmais)
+                        query += "' limit 50"
+
+                        cur = con.cursor()
+                        cur.execute(query)
+                        retornoAlerts = cur.fetchall()
+
+                        #print(retornoAlerts)
+                        #print("------")
+
+                        for a in retornoAlerts:
+
+                            geomJ = str(row[3])
+                            geomA = a[3]
+                            #print(a[2])
+                            query = "select ST_Intersects('"
+                            query += geomJ
+                            query += "','"
+                            query += geomA
+                            query += "')"
+                            #print(query)
+
+                            cur = con.cursor()
+                            cur.execute(query)
+                            retornoA = cur.fetchone()
+                            #print(retornoA[0])
+                            if retornoA[0] == "True":
+                                print("Verdade")
+
+                            """
+                            if retornoA[0] == "False":
+                                print("Nao foi")
+                            elif retornoA[0] == "True":
+                                print("Foi")
+    
+                            """
+
+
+
+                    print("-----------")
+
+
+                    #transformar a coord em 2 vets de lat e lon
+                    #transformar a location em 2 vets de lat e lon
+                    #ver se a location eh igual a a alguma coord dele
+
+
 
 
 
 def dadosEmArquivos(retornoBD):
+
     diretorio = '/home/lucas/PycharmProjects/ic2/bancoDados'
+
     for i in range(len(retornoBD)):
         try:
             for root, dirs, files in os.walk(diretorio):
@@ -45,7 +527,8 @@ def dadosEmArquivos(retornoBD):
                             data = str(retornoBD[i][1])
                             line = str(retornoBD[i][2])
                             id = str(retornoBD[i][3])
-                            csvData = [data, line, id]
+                            geom = str(retornoBD[i][4])
+                            csvData = [data, line, id, geom]
                             writer.writerow(csvData)
                     except:
                         continue
@@ -54,18 +537,21 @@ def dadosEmArquivos(retornoBD):
                         nomeCompletoArquivo = os.path.join(diretorio, retornoBD[i][0] + ".csv")
                         with open(nomeCompletoArquivo, 'w', newline='\n', encoding='utf-8') as csvFile:
                             writer = csv.writer(csvFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-                            csvData = ["date", "line", "id"]
+                            csvData = ["date", "line", "id", "geom"]
                             writer.writerow(csvData)
                             data = str(retornoBD[i][1])
                             line = str(retornoBD[i][2])
                             id = str(retornoBD[i][3])
-                            csvData = [data, line, id]
+                            geom = str(retornoBD[i][4])
+                            csvData = [data, line, id, geom]
                             writer.writerow(csvData)
                     except:
                         continue
 
         except:
             continue
+
+
 
 def retirarDuplicados():
 
@@ -137,13 +623,9 @@ def retirarDuplicados():
                 for j in range(len(vIndice)):
                     #excluirRegistro(id[vIndice[j]])
                     print("ia excluir o %s" % id[vIndice[j]])
-                gerarJam2(dataAtual, linestring, d[0], vplat, vplon)
+                #gerarJam2(dataAtual, linestring, d[0], vplat, vplon)
                 #criar um novo registro
                 #query de exclusao
-
-
-
-
 
 def recursiva(dataAgora, data, vdlat, vdlon, line, vIndice):
 
@@ -386,7 +868,6 @@ def pegarCoordenada(line):
     for i in range(len(line)):
         # [{'x': -48.850532, 'y': -26.334066}, {'x': -48.848051, 'y': -26.334057}, {'x': -48.847528, 'y': -26.334045}, {'x': -48.845524, 'y': -26.334038}]
         if line[i] == "-":
-
             #lat
             if sinal == 0:
                 lat += line[i]
@@ -415,8 +896,6 @@ def pegarCoordenada(line):
 
         else:
             i += 1
-    #print(vlat)
-    #print(vlon)
 
     return vlat, vlon
 
@@ -576,10 +1055,24 @@ def excluirRegistro(id):
     print(retornoBD)
 
 
+def sql():
+    con = psycopg2.connect(host='127.0.0.1', database='ic',
+                           user='lucas', password='')
+    cur = con.cursor()
+    query = "SELECT a1.location, a2.location, j.line FROM waze.alerts a1, waze.alerts a2, waze.jams j WHERE a1.street = a2.street AND a1.pub_utc_date - a2.pub_utc_date < '00:30:00.000' AND a1.id != a2.id AND a1.street =j.street AND (a1.pub_utc_date - j.pub_utc_date <  '00:30:00.000' OR a2.pub_utc_date - j.pub_utc_date < '00:30:00.000') limit 10"
+    cur.execute(query)
+    retornoBD = cur.fetchall()
+    for x in retornoBD:
+        print(x)
+        print("\n\n")
+    #print(line)
+    #print(line)
 
 #retirarDuplicados()
 #gerarHora()
-conexao()
-
-
-
+#conexao()
+#sql()
+#queryAJ()
+#procurarNoArquivo()
+correlacao()
+#calculoHorario()
