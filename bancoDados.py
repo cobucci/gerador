@@ -160,7 +160,7 @@ def correlacao():
     for x in ruasC:
 
         print("comecei Alerts - " + x)
-        query = "select pub_utc_date, location, type from waze.alerts where street = "
+        query = "select pub_utc_date, location, type, report_rating from waze.alerts where street = "
         query += x
         query += " limit "
         query += limiteJamAlerta
@@ -177,7 +177,7 @@ def correlacao():
             if len(retornoAlertsSemDuplicados) <= int(limiteJamAlerta):
                 vezes += 1
                 offset = int(limiteJamAlerta) * vezes
-                query = "select pub_utc_date, location, type from waze.alerts where street = "
+                query = "select pub_utc_date, location, type, report_rating from waze.alerts where street = "
                 query += x
                 query += " offset "
                 query += str(offset)
@@ -288,12 +288,14 @@ def calculoHorario(alertas, jams, rua):
     with open('/home/lucas/PycharmProjects/ic2/correlacao.txt', "a") as writter:
 
         for i in range(0, len(alertas)):
+
             if i not in indiceA:
-                registro = ["", "", "", 0, 0, 0, 0, 0]
+                registro = ["", "", "", 0, 0, 0, 0, 0, 0]
                 registro[0] = rua
                 registro[1] = alertas[i][0]
                 registro[2] = alertas[i][0]
                 registro[3] = 1
+                registro[8] = int(alertas[i][3])
                 horaA = str(alertas[i][0])
                 ha = horaA[:14]
                 indiceA.append(i)
@@ -317,7 +319,10 @@ def calculoHorario(alertas, jams, rua):
                                 if registro[2] < alertas[j][0]:
                                     registro[2] = alertas[j][0]
                                 registro[3] += 1
+                                registro[8] += alertas[j][3]
                                 indiceA.append(j)
+                if registro[3] > 1:
+                    registro[8] = registro[8] / registro[3]
 
                 #print("%s - %s -  %s - %d" % (registro[0], registro[1], registro[2], registro[3]))
                 #comecar os jams
@@ -347,13 +352,14 @@ def calculoHorario(alertas, jams, rua):
                     #print("%d / %d" % (registro[5], registro[4]))
                     registro[5] = registro[5] / registro[4]
 
-                print("%s - %s -  %s - %d - %d - %d - %d - %d" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
-                writter.write("%s - %s -  %s - %d - %d - %d - %d - %d\n" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
+                if registro[3] > 1 or registro[4] > 1:
+                    print("%s - %s -  %s - %d - %d - %d - %d - %d - %d" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7], registro[8]))
+                    writter.write("%s - %s -  %s - %d - %d - %d - %d - %d - %d\n" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7], registro[8]))
         print("--")
         for i in range(0, len(jams)):
             if i not in indiceJ:
                 indiceJ.append(i)
-                registro = ["", "", "", 0, 0, 0, 0, 0]
+                registro = ["", "", "", 0, 0, 0, 0, 0, 0]
                 registro[0] = rua
                 registro[1] = jams[i][0]
                 registro[2] = jams[i][0]
@@ -385,8 +391,9 @@ def calculoHorario(alertas, jams, rua):
                     #print("%d / %d" % (registro[5], registro[4]))
                     registro[5] = registro[5] / registro[4]
 
-                print("%s - %s -  %s - %d - %d - %d - %d - %d" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
-                writter.write("%s - %s -  %s - %d - %d - %d - %d - %d\n" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7]))
+                if registro[3] > 1 or registro[4] > 1:
+                    print("%s - %s -  %s - %d - %d - %d - %d - %d - %d" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7], registro[8]))
+                    writter.write("%s - %s -  %s - %d - %d - %d - %d - %d - %d\n" % (registro[0], registro[1], registro[2], registro[3], registro[4], registro[5], registro[6], registro[7], registro[8]))
 
 
 def criarAquivos(alertas, jams):

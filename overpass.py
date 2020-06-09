@@ -294,13 +294,7 @@ def gerador(auxList):
     while op > 3 and op < 1:
         op = int(input("Digite:\n1->ALERTA\n2->JAM\n3->SAIR\n"))
     while op == 1 or op == 2:
-        """
-            O usuario deve escolher uma dessas opcoes de parametro para o benchmark (gerador)
-            Par?metros do programa:
-                -Intervalo de tempo para gera??o
-                -Quantidades de registros de ocorr?ncias por CGs
-                -Quantidade de registros de ocorr?ncias por CGs espec?ficos (neste caso passar quais CGs por par?metro tb).
-            """
+
         print("? NECESSARIO ESCOLHER UMA DAS OPCOES DE PARAMETRO PARA A CRIACAO DOS DADOS")
         ok1 = 0
         while (ok1 != 1):
@@ -1012,7 +1006,7 @@ def jamConjuntoEspecificoTempo(listaGC, auxList):
             id += 1
 
 def main():
-    geograficCell()
+    #geograficCell()
     #getLatLongMaxMin()
     #readingFromGeojson()
     #queryWebSite()

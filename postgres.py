@@ -1262,5 +1262,4 @@ def main():
         escolha = int(input("\n\n\n1->Utilizar novo geojson\n2->Reutilizar geojson\n3->Fechar programa\n"))
 
 
-
 #main()
