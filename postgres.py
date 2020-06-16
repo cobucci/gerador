@@ -12,6 +12,7 @@ from datetime import *
 import psycopg2
 import random
 import os.path
+from pathlib import Path
 
 vetor = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] #letras e numeros usados pelo BD waze em alguns campos
 type = ["ROAD_CLOSED", "ACCIDENT", "WEATHERHAZARD", "JAM"] # opcoes do campo "type" do bd do waze. O subtype eh a mesma ideia
@@ -137,7 +138,7 @@ def gerarJam(quantidade, d, d2, path):
         turnType = "NONE"
         level = gerarLevel()
         blocking = ""
-        lat, lon, line, street = gerarLine()
+        lat, lon, line, street = gerarLine(path)
         type1 = "NONE"
         turnLine = ""
         datafile_ID = str(gerarDFI())
@@ -584,7 +585,7 @@ def alertaRegistrosPorGcEspecifico(auxList, listaGC, path):
     d = input(
         "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
     d2 = input(
-        "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 59 48 140):  ")
+        "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 8 21 59 48 140):  ")
 
     identificador = 1
     lat = 0.0
@@ -700,7 +701,7 @@ def alertaRegistrosPorGcEspecifico(auxList, listaGC, path):
                         cur.execute(req, values)
                         con.commit()
 
-                        print("Alerta numero = " + str(identificador) + " | tempo = " + data + "\n")
+                        print("Alerta CG = " + str(identificador) + " | tempo = " + data + "\n")
 
                 print("\n\n")
                 rua.clear()
@@ -760,7 +761,7 @@ def jamRegistrosPorGcEspecifico(auxList, listaGC, path):
     d = input(
         "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
     d2 = input(
-        "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 59 48 140):  ")
+        "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 8 21 59 48 140):  ")
 
     identificador = 1
     lat = 0.0
@@ -1104,6 +1105,7 @@ def getLatLongMaxMin(path):
     nlatMenor = ""
     nlonMenor = ""
 
+    print(path)
     arq = os.path.join(path, "Ruas&Coordenadas.txt")
     with open(arq, "r", encoding="utf8", errors='ignore') as txt_reader:
         line = txt_reader.readline() # lendo cada linha do txt, procurando a Latitude e Longitude maior e menor
@@ -1136,6 +1138,7 @@ def getLatLongMaxMin(path):
         coord.append(lonMaior)
         coord.append(latMaior)
         coord.append(lonMenor)
+        print(coord)
 
         return coord
 
@@ -1210,21 +1213,20 @@ def main():
         path = ""
         if escolha == 1:
             nomeGeojson = input("Digite o nome do arquivo geojson: ")
-            diretorio = '/home/lucas/PycharmProjects/ic2/geojson'
+            diretorio = './geojson'
             nomeCompletoGeojson = os.path.join(diretorio, nomeGeojson + ".geojson")
             nomePasta = input("Digite o nome da pasta que deseja armazenar os arquivos: ")
             path = criarNovoDiretorio(nomePasta)
             lerGeojson(nomeCompletoGeojson, path)
-            coord = getLatLongMaxMin(path)
             nomeRuas(path)
             ordenarCoord(path)
 
         else:
             nomeGeojson = input("Digite o nome do arquivo geojson: ")
-            diretorio = '/home/lucas/PycharmProjects/ic2/geojson'
+            diretorio = './geojson'
             nomeCompletoGeojson = os.path.join(diretorio, nomeGeojson + ".geojson")
             nomePasta = input("Digite o nome da pasta que estao os arquivos: ")
-            diretorioPasta = '/home/lucas/PycharmProjects/ic2/'
+            diretorioPasta = './'
             path = os.path.join(diretorioPasta, nomePasta)
 
         iniciarPrograma = 0
@@ -1245,7 +1247,7 @@ def main():
                 d = input(
                     "Digite a data inicial separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 57 48 140):  ")
                 d2 = input(
-                    "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 7 21 59 48 140):  ")
+                    "Digite a data final separado por espaco -> ano mes dia hora minuto segundo milissegundo (ex: 2020 12 8 21 57 48 140):  ")
 
                 if op == 1:
                     op2 = int(input("Digite a quantidade de Alertas : "))
@@ -1262,4 +1264,4 @@ def main():
         escolha = int(input("\n\n\n1->Utilizar novo geojson\n2->Reutilizar geojson\n3->Fechar programa\n"))
 
 
-#main()
+main()
